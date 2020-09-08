@@ -1,0 +1,14 @@
+Quais as principais dificuldades?
+Pessoalmente, conhecer os eventos e a sintaxe dos sockets. Ambos eram desconhecidos para mim
+
+Quais as principais diferenças entre a implementação da questão 1 e da questão 2?
+Na 1, um ponto importante é que o servidor tivesse também o processamento de entradas de teclado.
+Na 2, um ponto importante foi fazer o broadcast das mensagens recebidas pelo servidor para todas as outras conexões.
+
+Como gerenciar as conexões entre clientes na questão 2?
+Usei uma variável de classe no cliente chamada name, que era responsável por identificar as mensagens que chegavam.
+Um cuidado elegante foi fazer com que o servidor não mandasse a mensagem de volta para quem a enviou (apenas para o restante).
+
+Como identificar as mensagens e os remetentes para seguir a formatação do exemplo?
+Usei uma variável de classe no cliente chamada name, que era responsável por identificar as mensagens que chegavam.
+Essa variável é concatenada com a mensagem em si, desse modo, a mensagem vira "Nome: mensagem" para o servidor, que não precisa tratá-la de maneira separada.
