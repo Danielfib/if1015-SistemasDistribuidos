@@ -1,6 +1,17 @@
 Perguntas para discussão
 Quais as principais diferenças entre TCP e UDP?
+TCP possui muitos mais processos de checagem de status de mensagens e conexões, enquanto UDP não se preocupa com isso, ele apenas envia e se chegar chegou.
+A segurança também é um diferencial grande, pois o TCP possui muito mais recursos de segurança do que UDP.
+
 Quais as principais diferenças entre a implementação TCP e UDP (tanto do chat como da
 calculadora)?
+A principal diferença é que TCP é orientado à conexão, então na implementação o ponto principal é que o(s) cliente(s) estejam devidamente conectados. TCP também guarda o estado da conexão, de modo que é possível saber em determinado momento quem está conectado no socket.
+E no UDP, a implementação é mais rústica, no sentido de estado não guardado, onde a única preocupação é mandar a mensagem, mas depois que ela é enviada, não há uma preocupação de saber se ela chegou.
+
 Quais as principais dificuldades nas implementações UDP?
+Guardar informações sobre os clientes. (TCP guarda automaticamente quando se conecta, mas no UDP, é necessário guardar as informações recebidas a cada mensagem, caso seja necessário ter algum tipo de persistência dos clientes, como foi o caso na primeira atividade, em que era necessário ter todos os participantes do chat.
+
 Quando faz sentido usar TCP ou UDP?
+Como TCP está mais orientado a conexão, se preocupando com o estado dela e o feedback de que suas mensagens chegaram, faz mais sentido usar TCP para aplicações onde é necessário conexões funcionando bem, simultaneamente.
+Outro fator importante do TCP é a segurança, muito mais elaborada que a do UDP.
+UDP faz mais sentido para aplicações que não se preocupam com o fluxo contínuo e sequencial de dados, por exemplo, serviços de streaming, em que caso o usuário final tenha um problema de conexão, a parte perdida pode ser pulada.
