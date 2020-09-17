@@ -24,9 +24,10 @@ const handleConnection = socket => {
 }
 
 function processOperation(str){
-    var a = parseFloat(str.charAt(0));
-    var b = parseFloat(str.charAt(2));
-    var op = str.charAt(4);
+    var elems = str.split(' ')
+    var a = parseFloat(elems[0]);
+    var b = parseFloat(elems[1]);
+    var op = elems[2];
     return calculate(a, b, op);
 }
 
