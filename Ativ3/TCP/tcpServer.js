@@ -21,9 +21,7 @@ const handleConnection = socket => {
         if(str === 'end'){
             socket.end()
         } else {
-            if(unmarshaller._state === 'HEADER'){
-                marshaller.sendTo(processOperation(str))
-            }
+            marshaller.sendTo(processOperation(str))
         }
     })
 }
