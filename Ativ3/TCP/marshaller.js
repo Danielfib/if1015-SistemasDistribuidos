@@ -1,11 +1,7 @@
-function Marshaller(socket){
-    this.socket = socket
+class Marshaller {
+    static marshall(msg){
+        return Buffer.from(msg)
+    }    
 }
 
-Marshaller.prototype.sendTo = function(msg){
-    let buffer = Buffer.from(msg.toString());
-    console.log(buffer)
-    this.socket.write(buffer)
-}
-
-module.exports = Marshaller
+module.exports = Marshaller;
