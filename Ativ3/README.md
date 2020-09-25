@@ -16,8 +16,3 @@ a1 a2 op
 18721 23 /
 ```
 In UDP execution, you must first choose a port (this allows the application to have multiple simultaneous clients), but don't choose port 8080, because it is the server's.
-
-## Questions:
-#### Quais as principais dificuldades de implementação?
-#### Como poderia ser feito o tratamento de erros?
-#### Haveria alguma razão para se implementar um mecanismo de numeração/identificação de mensagens neste protocolo?
