@@ -7,6 +7,8 @@ When both are running, it is enough to type on the client side the desired calcu
 ```
 a1 a2 op
 
+where op should be one of: +, -, *, /
+
 #for example:
 1 1 +
 4 2 *
@@ -14,7 +16,7 @@ a1 a2 op
 18721 23 /
 ```
 
-# Questions:
-### Quais as principais dificuldades de implementação?
-### Como poderia ser feito o tratamento de erros?
-### Haveria alguma razão para se implementar um mecanismo de numeração/identificação de mensagens neste protocolo?
+## Questions:
+#### Quais as principais dificuldades de implementação?
+#### Como poderia ser feito o tratamento de erros?
+#### Haveria alguma razão para se implementar um mecanismo de numeração/identificação de mensagens neste protocolo?
