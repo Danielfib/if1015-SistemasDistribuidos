@@ -1,18 +1,18 @@
 const uSIHandler = require('./udpServerInvocationHandler')
-const dgram = require('dgram');
+const dgram = require('dgram')
+const Marshaller = require('../Marshaller')
+const Unmarshaller = require('../Unmarshaller')
+
 const readline = require('readline')
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 })
 
-rl.addListener('line', line => {
-    broadcastToClients(line)
-})
-
 const serverSocket = dgram.createSocket('udp4')
 
-serverSocket.on('message', (msg, rinfo) => {
+serverSocket.on('message', (data, rinfo) => {
+    var msg = Unmarshaller.unmarshall(data)
     handleMessage(msg, rinfo)
     str = msg.toString()
     var operation = str.substring(str.indexOf(":")+1, str.length)
@@ -21,7 +21,8 @@ serverSocket.on('message', (msg, rinfo) => {
 });
 
 function sendTo(msg, address, port){
-    serverSocket.send(msg, port, address, (error) => {
+    var data = Marshaller.marshall(msg)
+    serverSocket.send(data, port, address, (error) => {
         if(error){
             serverSocket.close()
         } else {

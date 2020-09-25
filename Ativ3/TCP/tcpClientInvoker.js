@@ -1,5 +1,5 @@
-const Marshaller = require('./Marshaller')
-const Unmarshaller = require('./Unmarshaller')
+const Marshaller = require('../Marshaller')
+const Unmarshaller = require('../Unmarshaller')
 
 const net = require('net')
 const client = new net.Socket()

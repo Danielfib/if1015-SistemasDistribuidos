@@ -7,14 +7,15 @@ When both are running, it is enough to type on the client side the desired calcu
 ```
 a1 a2 op
 
-where op should be one of: +, -, *, /
+# where op should be one of: +, -, *, /
 
-#for example:
+# for example:
 1 1 +
 4 2 *
 3812 12798 -
 18721 23 /
 ```
+In UDP execution, you must first choose a port (this allows the application to have multiple simultaneous clients), but don't choose port 8080, because it is the server's.
 
 ## Questions:
 #### Quais as principais dificuldades de implementação?

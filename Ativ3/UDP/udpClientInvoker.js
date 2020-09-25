@@ -1,9 +1,12 @@
 const dgram = require('dgram');
 const clientSocket = dgram.createSocket('udp4')
+const Marshaller = require('../Marshaller')
+const Unmarshaller = require('../Unmarshaller')
 
 var port;
 
-clientSocket.on('message', (msg, rinfo) => {
+clientSocket.on('message', (data, rinfo) => {
+    var msg = Unmarshaller.unmarshall(data)
     handleMessage(msg, rinfo)
 });
 
@@ -13,7 +16,8 @@ function handleMessage(msg, rinfo){
 
 module.exports = {
     sendMessage: function(msg){
-        clientSocket.send(msg, 8080, "127.0.0.1", (error) => {
+        var data = Marshaller.marshall(msg)
+        clientSocket.send(data, 8080, "127.0.0.1", (error) => {
             if(error){
                 clientSocket.close()
             } else {

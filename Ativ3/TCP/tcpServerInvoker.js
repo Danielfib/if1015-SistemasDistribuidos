@@ -1,6 +1,6 @@
 const net = require('net')
-const Marshaller = require('./Marshaller')
-const Unmarshaller = require('./Unmarshaller')
+const Marshaller = require('../Marshaller')
+const Unmarshaller = require('../Unmarshaller')
 const sIHandler = require('./tcpServerInvocationHandler')
 
 const handleConnection = socket => {
