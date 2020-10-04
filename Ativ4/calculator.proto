@@ -1,0 +1,23 @@
+  
+syntax = "proto3";
+
+package calculatorPackage;
+
+service Calculator {
+    rpc createExpression(Expression) returns (Expression);
+    rpc readExpressions(voidNoParam) returns (Expressions);
+    rpc readExpressionsStream(voidNoParam) returns (stream Expression);
+}
+
+message voidNoParam {}
+
+message Expression {
+    int32 id = 1;
+    int32 arg1 = 2;
+    string op = 3;
+    int32 arg2 = 4;
+}
+
+message Expressions {
+    repeated Expression items = 1;
+}

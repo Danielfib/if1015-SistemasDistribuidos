@@ -1,37 +1,39 @@
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader")
-const packageDef = protoLoader.loadSync("todo.proto", {});
+const packageDef = protoLoader.loadSync("calculator.proto", {});
 const grpcObject = grpc.loadPackageDefinition(packageDef);
-const todoPackage = grpcObject.todoPackage;
+const calculatorPackage = grpcObject.calculatorPackage;
 
 const server = new grpc.Server();
 server.bind("0.0.0.0:40000",
  grpc.ServerCredentials.createInsecure());
 
-server.addService(todoPackage.Todo.service,
+server.addService(calculatorPackage.Calculator.service,
     {
-        "createTodo": createTodo,
-        "readTodos" : readTodos,
-        "readTodosStream": readTodosStream
+        "createExpression": createExpression,
+        "readExpressions" : readExpressions,
+        "readExpressionsStream": readExpressionsStream
     });
 server.start();
 
-const todos = []
-function createTodo (call, callback) {
-    const todoItem = {
-        "id": todos.length + 1,
-        "text": call.request.text
+const expressions = []
+function createExpression (call, callback) {
+    const expressionItem = {
+        "id": expressions.length + 1,
+        "arg1": call.request.arg1,
+        "op": call.request.op,
+        "arg2": call.request.arg2
     }
-    todos.push(todoItem)
-    callback(null, todoItem);
+    expressions.push(expressionItem)
+    callback(null, expressionItem);
 }
 
-function readTodosStream(call, callback) {
+function readExpressionsStream(call, callback) {
     
-    todos.forEach(t => call.write(t));
+    expressions.forEach(t => call.write(t));
     call.end();
 }
 
-function readTodos(call, callback) {
-    callback(null, {"items": todos})   
+function readExpressions(call, callback) {
+    callback(null, {"items": expressions})   
 }
