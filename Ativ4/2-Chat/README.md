@@ -1,7 +1,7 @@
 # Using gRPC to build a calculator service
 
 ## How?
-'''
+'''bash
 #install gRPC, if you don't have it already
 npm install grpc @grpc/proto-loader
 
