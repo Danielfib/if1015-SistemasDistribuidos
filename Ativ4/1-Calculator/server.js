@@ -10,9 +10,7 @@ server.bind("0.0.0.0:40000",
 
 server.addService(calculatorPackage.Calculator.service,
     {
-        "createExpression": createExpression,
-        "readExpressions" : readExpressions,
-        "readExpressionsStream": readExpressionsStream
+        "createExpression": createExpression
     });
 server.start();
 
@@ -22,18 +20,29 @@ function createExpression (call, callback) {
         "id": expressions.length + 1,
         "arg1": call.request.arg1,
         "op": call.request.op,
-        "arg2": call.request.arg2
+        "arg2": call.request.arg2,
+        "answer": calculate(call.request.arg1, call.request.op, call.request.arg2)
     }
     expressions.push(expressionItem)
+    console.log("respondendo: " + expressionItem.answer)
     callback(null, expressionItem);
 }
 
-function readExpressionsStream(call, callback) {
-    
-    expressions.forEach(t => call.write(t));
-    call.end();
-}
-
-function readExpressions(call, callback) {
-    callback(null, {"items": expressions})   
+function calculate(a, op, b){
+    var result = 0;
+    switch(op){
+        case '/':
+            result = a / b;
+            break;
+        case '+':
+            result = a + b;
+            break;
+        case '-':
+            result = a - b;
+            break;
+        case '*':
+            result = a * b;
+            break;
+    }
+    return result.toString();
 }
