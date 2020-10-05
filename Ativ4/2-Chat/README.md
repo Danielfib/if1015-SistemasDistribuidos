@@ -1,4 +1,4 @@
-# Using gRPC to build a calculator service
+# Using gRPC to build a chat service
 
 ## How?
 ```bash
