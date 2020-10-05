@@ -8,11 +8,10 @@ npm install grpc @grpc/proto-loader
 #run the server
 node server.js
 
-#run the client with parameters:
-node client.js 1 + 1
-
-correct pattern for client parameters: arg1 op arg2
-where op should be one of: +, -, /, *
+#for each desired client:
+##run the client
+node client.js
+##choose any name (different from previous chosen names)
+Daniel
+##type any message in any client terminal and the message will be broadcasted to all other clients
 '''
-
-The server will message back the client with the answer.
