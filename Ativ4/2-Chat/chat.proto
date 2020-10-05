@@ -1,0 +1,20 @@
+  
+syntax = "proto3";
+
+package chatPackage;
+
+service Chat {
+    rpc sendMessageToClients(ChatMessage) returns (voidNoParam);
+    rpc registerNewClient(Client) returns (stream ChatMessage);
+}
+
+message voidNoParam {}
+
+message ChatMessage {
+    string senderName = 1;
+    string text = 2;
+}
+
+message Client {
+    string name = 1;
+}
