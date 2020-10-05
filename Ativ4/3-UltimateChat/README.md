@@ -15,3 +15,5 @@ node client.js
 Daniel
 ## type any message in any client terminal and the message will be broadcasted to all other clients
 ```
+
+To end the connection, simply type "end" on the client you wish to disconnect
