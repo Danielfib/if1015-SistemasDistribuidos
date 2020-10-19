@@ -22,6 +22,12 @@ class hateoas {
     }
 }
 
+//#region [Studios]
+app.get("/studios", (req, res) => {
+    console.log("received get studios request!");
+    //TODO
+})
+
 app.post("/studios", (req, res) => {
     console.log("received post studios request!");
     let id = uuid.v4();
@@ -31,6 +37,27 @@ app.post("/studios", (req, res) => {
         games: req.body.games
     })
     console.log('now we have this many studios: ' + studios.length)
+})
+
+app.put("/studios/:studioName", (req, res) => {
+    console.log("received put studios request!");
+    studios.forEach(x => {
+        if(x.name == req.params.studioName){
+            x.games = req.body.games;
+        }
+    });
+})
+
+app.delete("/studios/:studioName", (req, res) => {
+    console.log("received delete studios request! With name: " + req.params.studioName);
+    studios = studios.filter((studio) => studio.name != req.params.studioName);
+})
+//#endregion
+
+//#region [Games]
+app.get("/games", (req, res) => {
+    console.log("received get games request!");
+    //TODO
 })
 
 app.post("/games", (req, res) => {
@@ -43,5 +70,20 @@ app.post("/games", (req, res) => {
     })
     console.log('now we have this many games: ' + games.length)
 })
+
+app.put("/games/:gameName", (req, res) => {
+    console.log("received put games request!");
+    games.forEach(x => {
+        if(x.name == req.params.gameName){
+            x.year = req.body.year;
+        }
+    })
+})
+
+app.delete("/games/:gameName", (req, res) => {
+    console.log("received delete games request!");
+    games = games.filter((game) => game.name != req.params.name);
+})
+//#endregion
 
 app.listen(port);
