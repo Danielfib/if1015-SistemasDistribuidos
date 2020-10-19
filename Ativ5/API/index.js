@@ -11,8 +11,8 @@ const app = Express();
 app.use(Express.json());
 app.use(xmlparser());
 app.use(Express.urlencoded({ extended: true }));
-const port = 7474;
-const API_URL = "https://localhost:7474";
+const port = 8080;
+const API_URL = "https://localhost:8080";
 
 class hateoas {
     constructor(type, href, rel) {
@@ -25,7 +25,7 @@ class hateoas {
 //#region [Studios]
 app.get("/studios", (req, res) => {
     console.log("received get studios request!");
-    //TODO
+    res.json(studios);
 })
 
 app.post("/studios", (req, res) => {
@@ -57,7 +57,7 @@ app.delete("/studios/:studioName", (req, res) => {
 //#region [Games]
 app.get("/games", (req, res) => {
     console.log("received get games request!");
-    //TODO
+    res.json(games);
 })
 
 app.post("/games", (req, res) => {

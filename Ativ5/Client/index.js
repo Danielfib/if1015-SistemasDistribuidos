@@ -19,7 +19,16 @@ rl.on('line', (input) => {
         switch(op){
             case "get":
                 console.log('sending get game req')
-                //TODO
+                Request.get(
+                    "http://localhost:8080/games", 
+                    (error, res, body) => {
+                        if(error){
+                            console.log(error);
+                        } else {
+                            console.log(JSON.parse(res.body));
+                        }
+                    }
+                )
             case "post":
                 var year = args[3]
                 console.log('sending post game req')
@@ -28,7 +37,7 @@ rl.on('line', (input) => {
                         headers: {
                             "content-type": "application/json"
                         },
-                        url: "http://localhost:7474/games",
+                        url: "http://localhost:8080/games",
                         body: JSON.stringify({
                             name: name,
                             year: year
@@ -51,9 +60,9 @@ rl.on('line', (input) => {
                         headers: {
                             "content-type": "application/json",
                         },
-                        url: "http://localhost:7474/games" + name,
+                        url: "http://localhost:8080/games" + name,
                         body: JSON.stringify({
-                            year = year
+                            year: year
                         })
                     }
                 )
@@ -61,7 +70,7 @@ rl.on('line', (input) => {
             case "delete":
                 console.log('sending delete game req');
                 Request.delete(
-                    "http://localhost:7474/games/" + name,
+                    "http://localhost:8080/games/" + name,
                     (error, response, body) => {
                         if (error) {
                           console.log(error);
@@ -76,7 +85,16 @@ rl.on('line', (input) => {
         var name = args[2]
         switch(op){
             case "get":
-                //TODO
+                Request.get(
+                    "http://localhost:8080/studios", 
+                    (error, res, body) => {
+                        if(error){
+                            console.log(error);
+                        } else {
+                            console.log(JSON.parse(res.body));
+                        }
+                    }
+                )
                 break;
             case "post":
                 console.log('sending post studio req')
@@ -85,7 +103,7 @@ rl.on('line', (input) => {
                         headers: {
                             "content-type": "application/json"
                         },
-                        url: "http://localhost:7474/studios",
+                        url: "http://localhost:8080/studios",
                         body: JSON.stringify({
                             name: name,
                             games: []
@@ -107,9 +125,9 @@ rl.on('line', (input) => {
                         headers: {
                             "content-type": "application/json",
                         },
-                        url: "http://localhost:7474/studios" + name,
+                        url: "http://localhost:8080/studios" + name,
                         body: JSON.stringify({
-                            games = []
+                            games: []
                         })
                     }
                 )
@@ -117,7 +135,7 @@ rl.on('line', (input) => {
             case "delete":
                 console.log('sending delete studio req')
                 Request.delete(
-                    "http://localhost:7474/studios/" + name,
+                    "http://localhost:8080/studios/" + name,
                     (error, response, body) => {
                         if (error) {
                           console.log(error);
