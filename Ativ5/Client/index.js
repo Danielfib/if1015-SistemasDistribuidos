@@ -37,7 +37,7 @@ rl.on('line', (input) => {
                         headers: {
                             "content-type": "application/json"
                         },
-                        url: "http://localhost:8080/games",
+                        url: "http://localhost:8080/games/",
                         body: JSON.stringify({
                             name: name,
                             year: year
@@ -60,7 +60,7 @@ rl.on('line', (input) => {
                         headers: {
                             "content-type": "application/json",
                         },
-                        url: "http://localhost:8080/games" + name,
+                        url: "http://localhost:8080/games/" + name,
                         body: JSON.stringify({
                             year: year
                         })
@@ -125,7 +125,7 @@ rl.on('line', (input) => {
                         headers: {
                             "content-type": "application/json",
                         },
-                        url: "http://localhost:8080/studios" + name,
+                        url: "http://localhost:8080/studios/" + name,
                         body: JSON.stringify({
                             games: []
                         })
