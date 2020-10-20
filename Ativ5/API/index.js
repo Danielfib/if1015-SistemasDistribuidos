@@ -14,14 +14,6 @@ app.use(Express.urlencoded({ extended: true }));
 const port = 8080;
 const API_URL = "https://localhost:8080";
 
-class hateoas {
-    constructor(type, href, rel) {
-        this.type = type;
-        this.href = API_URL + href;
-        this.rel = rel;
-    }
-}
-
 //#region [Studios]
 app.get("/studios", (req, res) => {
     console.log("received get studios request!");
