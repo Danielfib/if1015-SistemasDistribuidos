@@ -8,6 +8,12 @@
         }
         window.onload = function(){
             document.getElementById("nameTitle").innerHTML = name;
+            document.getElementById("messageInput").addEventListener("keyup", function(event) {
+                if(event.key == "Enter"){
+                    event.preventDefault();
+                    SendMessage();
+                }
+            });
         }
         
         var connection = new WebSocket('ws://localhost:8080/testing');

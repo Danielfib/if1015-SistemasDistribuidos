@@ -1,0 +1,27 @@
+<html>
+    <script language="javascript">
+        var source = new EventSource("http://localhost:9090");
+        source.onmessage = function(event) {
+            console.log("received message: " + event.data);
+            document.getElementById("messageFeed").innerHTML += event.data + "<br>";
+        };
+    </script>
+
+    <body>
+        <label>Message Feed:</label>
+        <div id="messageFeed" class="scrollmenu"></div>
+    </body>
+
+    <style>
+        div.scrollmenu {
+            overflow: auto;
+            white-space: nowrap;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            height: 400;
+            width: 400;
+        }
+    </style>
+</html>
