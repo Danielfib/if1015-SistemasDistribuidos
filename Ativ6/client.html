@@ -1,0 +1,66 @@
+<html>
+    <script language="javascript">
+        var name = "";
+        while(name == ""){
+            name = prompt('Choose an unique name!');
+
+            if(name == "") alert("Invalid name, please try again");
+        }
+        window.onload = function(){
+            document.getElementById("nameTitle").innerHTML = name;
+        }
+        
+        var connection = new WebSocket('ws://localhost:8080/testing');
+        connection.onopen = function(){
+            console.log('Connection open!');
+        }
+        
+        connection.onclose = function(){
+            console.log('Connection closed');
+        }
+        
+        connection.onmessage = function(e){
+            var server_message = e.data;
+            console.log(server_message);
+            document.getElementById("messageFeed").innerHTML += server_message + "<br>";
+        }
+        
+        function SendMessage(){
+            var message = document.getElementById("messageInput").value;
+            console.log("Message sent: " + message);
+            connection.send(name + ":" + message);
+            
+            document.getElementById("messageFeed").innerHTML += "You: " + message + "<br>";
+            document.getElementById("messageInput").value = "";
+        }
+    </script>
+    
+    <body>
+        <div id="nameTitle" class="header"></div>
+        <label>Message Feed:</label>
+        <div id="messageFeed" class="scrollmenu"></div>
+
+        <input id="messageInput"/>
+        <button id="sendMessageButton" onclick="SendMessage()">
+            Send Message
+        </button>
+    </body>
+
+    <style>
+        div.scrollmenu {
+            overflow: auto;
+            white-space: nowrap;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            height: 400;
+            width: 400;
+        }
+        div.header{
+            font-weight: bold;
+            font-size: xx-large;
+        }
+    </style>
+</html>
+
