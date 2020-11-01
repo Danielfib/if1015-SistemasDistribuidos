@@ -1,0 +1,66 @@
+<html>
+    <script language="javascript">
+        var connection = new WebSocket('ws://localhost:8080/testing');
+        connection.onopen = function(){
+            console.log('Connection open!');
+        }
+        
+        connection.onclose = function() {
+            console.log('Connection closed');
+        }
+        
+        connection.onmessage = function(e) {
+            var server_message = JSON.parse(e.data);
+            InitializeList(server_message);
+        }
+
+        function InitializeList(list){
+            var ul = document.getElementById("requestsList");
+            ul.innerHTML = "";
+
+            for(var i = 0; i < list.length; i++){
+                var element = list[i];
+                var li = document.createElement("li");
+                li.setAttribute("id", i);
+    
+                var requestName = document.createElement("div");
+                requestName.textContent = element.name;
+                var requestButton = document.createElement("button");
+                requestButton.textContent = "Autorizar";
+                requestButton.addEventListener('click', AuthorizeRequest.bind(this, i))
+    
+                li.appendChild(requestName);
+                li.appendChild(requestButton);
+                ul.appendChild(li);
+            }
+        }
+
+        function AuthorizeRequest(requestNumber){
+            connection.send(requestNumber);
+        }
+    </script>
+    
+    <body>
+        <div class="header">Pedidos</div>
+        <ul id="requestsList">
+        </ul>
+    </body>
+
+    <style>
+        div.scrollmenu {
+            overflow: auto;
+            white-space: nowrap;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            height: 400;
+            width: 400;
+        }
+        div.header{
+            font-weight: bold;
+            font-size: xx-large;
+        }
+    </style>
+</html>
+
