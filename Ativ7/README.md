@@ -10,7 +10,7 @@ npm install ws
 ## Uso da aplicação
 ```bash
 # rode o servidor
-npm server.js
+node server.js
 ```
 
 Abra a página client.html (quantas quiser)
