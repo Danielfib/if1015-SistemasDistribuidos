@@ -1,4 +1,9 @@
 # Questões para discussão:
 ## Qual o principal ponto para se tratar os sources com RxJS?
+Primeiro, é necessário ter acesso ao objeto onde o evento é chamado, e ao evento, para poder criar o source. Depois, existem operações que podem ser feitas com mais de um source para resultado interessantes, como por exemplo o merge(), usado no exercício. Quando estiver satisfeito com o subconjunto desejado de eventos monitorados, pode-se dar subscribe para fazer algo específico assim que algum dos subconjuntos de eventos que foram definidos ocorrer.
 
 ## Quais as principais dificuldades com a resolução do exercício?
+Tive uma dificuldade que me custou muito tempo em relação a conseguir rodar o cliente web server sem o browser. Pesquisando, vi que não era muito usual e me perguntei até se estava fazeendo algo que não era o esperado e até talvez conceitualmente errado, mas eventualmente consegui.
+Depois disso, e depois do trabalho de configurar cada parte com sua conexão, tive dificuldade com o uso do RxJS com relação a captura dos eventos. Com o webserver foi tranquilo, pois eu podia pegar o objeto do webserver e pegar os eventos que são passando como parâmetros no método ws.On("nomeDoEvento>"). 
+Porém, como o RabbitMQ e com o GRPC, que seriam o outro source, não havia eventos dessa maneira, em que eu poderia pegar direto pelo rxjs.fromEvent(). Para resolver isso, utilizei a classe EventEmitter, do node, pois com ela conseguia pegar assim: rxjs.fromEvent(myEventEmitter, 'myEvent').
+Além desses dois pontos, ter tantas estruturas diferentes de conexões funcionando juntas ao mesmo tempo, e algumas com comportamentos parecidos, me embaralhou em alguns momentos.

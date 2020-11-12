@@ -9,14 +9,20 @@ npm install ws
 ```
 ## Uso da aplicação
 ```bash
-# rode a fila recebedora
-node badVoltagesReceiver.js
-
-# rode o source WebSocket
+# rode as sources(em terminais diferentes):
 node sourceWS.js
+node sourceRMQ.js
 
 #rode o filtro RxJS
 node voltageFilter.js
+
+#rode a fila RMQ recebedora do filtro
+node badVoltagesReceiver.js
 ```
 
-Veja enquanto o source WebSocket se comunica com o filtro RxJS e este encaminha as voltagens fora do intervalo definido para a queue do RabbitMQ.
+Ou, você pode rodar apenas o all.js caso não queira ter que abrir cada terminal.
+```bash
+node all.js
+```
+
+Abra o arquivo queueViewer.html para visualizar no browser as voltagens fora do alcance sendo notificadas.
