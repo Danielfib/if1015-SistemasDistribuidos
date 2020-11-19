@@ -1,0 +1,9 @@
+Perguntas:
+Quais as principais dificuldades de implementação?
+Tive dificuldade para entender a estrutura que era esperada da atividade. Ficou claro que JSON não deveria ser usado, então usei o Buffer para serializar a troca de mensagens. Como foi pedido que a estrutura de cada componente fosse muito clara, imaginei que deveria haver algum isolamento entre os componentes, o que levou a algumas decisões de fluxo. Também fiquei um pouco confuso se deveria haver necessariamente divisão das mensagens em estrutura da pacote, mas como não estava especificado e achei que as mensagem eram muito pequenas, não julguei necessário.
+
+Como poderia ser feito o tratamento de erros?
+Evitando que a aplicação quebre com entradas estranhas, e pedir novas entradas, dando exemplo do formato esperado.
+
+Haveria alguma razão para se implementar um mecanismo de numeração/identificação de mensagens neste protocolo?
+Creio que talvez para entradas mais verbosas, ou que houvesse um trânsito maior de mensagens, pois isso poderia levar a falhas no transporte, e a necessidade de checar a integridade e a ordem das mensagens. Porém, no escopo desenvolvido, acabei optando por não estruturar as mensagens assim.
